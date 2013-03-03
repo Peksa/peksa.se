@@ -97,23 +97,23 @@
 		hilbert: function(level, direction, rotation) {
 			if (level == 0)
 				return;
-			direction = this.right.call(this, direction, rotation);
+			direction = this.right(direction, rotation);
 			
-			this.hilbert.call(this, level - 1, direction, -rotation);
-			this.forward.call(this, direction);
-			
-			
-			direction = this.left.call(this, direction, rotation);
-			
-			this.hilbert.call(this, level - 1, direction, rotation);
-			this.forward.call(this, direction);
+			this.hilbert(level - 1, direction, -rotation);
+			this.forward(direction);
 			
 			
-			this.hilbert.call(this, level - 1, direction, rotation);
+			direction = this.left(direction, rotation);
 			
-			direction = this.left.call(this, direction, rotation);
-			this.forward.call(this, direction);
-			this.hilbert.call(this, level - 1, direction, -rotation);
+			this.hilbert(level - 1, direction, rotation);
+			this.forward(direction);
+			
+			
+			this.hilbert(level - 1, direction, rotation);
+			
+			direction = this.left(direction, rotation);
+			this.forward(direction);
+			this.hilbert(level - 1, direction, -rotation);
 		},
 		
 		saveMapping: function () {
@@ -146,7 +146,7 @@
 				this.coordinates.left--;
 				break;
 			}
-			this.saveMapping.call(this);
+			this.saveMapping();
 		}
 	    
 	};
